@@ -2,7 +2,7 @@
 % dans ce modèle article ne pas utiliser la mention "chapter", par contre on peut
 % utiliser la numérotation naturelle et les références croisées.
 \usepackage[utf8x]{inputenc}
-\usepackage{ucs}
+%\usepackage{ucs}
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
 %\usepackage{eurosym} % pour pouvoir utiliser le symbole \euro{}
@@ -34,13 +34,13 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-
-\usepackage{textcomp}
+	\everymath{\displaystyle}
+%\usepackage{textcomp}
 
 \usepackage{graphicx}
 %\graphicspath{ {./Images/} } % indique le chemin relatif où sont situées les images
 % définition de la clé Graphic Inclusion pour paramétrer par défaut la taille des images incluses
-	\setkeys{Gin}{width=0.7071\linewidth}
+	\setkeys{Gin}{width=0.5000\linewidth}
 \usepackage{float}
 	\floatplacement{table}{H} %par défaut tables là où code est posé
 	\floatplacement{figure}{H} %par défaut images là où code est posé
@@ -55,10 +55,12 @@
 \usepackage{ifthen}
 %%% Gestion de la dyslexie
 \newboolean{isDyslexique}
-	\setboolean{isDyslexique}{false}
+	\setboolean{isDyslexique}{False}
 %%% Gestion de la correction
 \newboolean{isCorrection}
-	\setboolean{isCorrection}{false}
+	\setboolean{isCorrection}{False}
+\newboolean{isEvaluation}
+	\setboolean{isEvaluation}{False}
 
 % \usepackage{palatino} %\usepackage{sans}
 % \usepackage{lxfonts} %\usepackage{arev}
@@ -78,7 +80,7 @@
 \fancyhead[LO,RE]{\leftmark}
 \fancyfoot[LE,RO]{F.S.G.}
 \fancyfoot[C]{.::--- \ \thepage / \pageref*{LastPage} \ ---::.}
-\fancyfoot[RE,LO]{c4-1.pc.ac02}
+\fancyfoot[RE,LO]{c4-3.pd.acxx}
 % fin du test de modification :)
 \usepackage{tikz}
 	\usetikzlibrary{babel,math}
@@ -99,15 +101,15 @@
 \begin{tabular}{| m{0.15\linewidth}  m{0.8\linewidth} || }
 	\hline
 	\multirow{4}{*}{\includegraphics[width=\linewidth]{cycle4-logo-elec-ondes-nrj.png}} 
-	& c4-1·pC·ac02
+	& c4-3·pd·ac
 	\begin{LARGE}
-		Le courant électrique dans un circuit en dérivation.
+		T.P. : Description des signaux sonores.
 	\end{LARGE} \cr
 	\cline{2-2}
 	 & \cr
 	 & Nom : . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . Prénom : . \ \ . \ \ . \ \ . \ \ . \ \ . \cr
 	 & \cr
-	 & Groupe : 5e \ \ . \ \ . Durée : 60 min. \cr
+	 & Classe / Groupe : . \ \ . \ \ . \ \ . Durée : ..... min. \cr
 	\hline\hline
 \end{tabular}
 \end{flushleft}
@@ -122,6 +124,7 @@
 % \includegraphics[scale=0.333]{cycle4-logo-mvts.png}
 % \includegraphics[scale=0.333]{cycle4-logo-transfo-matiere.png}
 
+\ifthenelse{\boolean{isEvaluation}}{% True
 \begin{flushleft}
 \begin{tabular}{| m{0.15\linewidth} | m{0.8\linewidth} ||}
 	\hline
@@ -134,8 +137,9 @@
 	\hline\hline
 \end{tabular}
 \end{flushleft}
-
-% $ ~~ $
+}{% False
+	\relax
+} % end evaluation
 
 \begin{flushleft}
 \begin{tabular}{| m{0.03\linewidth} | m{0.75\linewidth} || m{0.015\linewidth} | m{0.015\linewidth} | m{0.015\linewidth} | m{0.015\linewidth} || }
@@ -150,10 +154,10 @@
 	A4 & \footnotesize{Interpréter des résultats expérimentaux, en tirer des conclusions et les communiquer en argumentant.} & & & & \cr \hline
 %	A5 & \footnotesize{Développer des modèles simples pour expliquer des faits d'observations et mettre en \oe{}uvre des démarches propres aux sciences.} & & & & \cr \hline
 % B & Concevoir, créer, réaliser \cr \hline
-%	B1 & \footnotesize{Concevoir et réaliser un dispositif de mesure ou d'observation.} & & & & \cr \hline
+	%B1 & \footnotesize{Concevoir et réaliser un dispositif de mesure ou d'observation.} & & & & \cr \hline
 % C & S'approprier des outils et des méthodes \cr \hline
 %	C1 & \footnotesize{Effectuer des recherches bibliographiques.} & & & & \cr \hline
-%	C2 & \footnotesize{Utiliser des outils numériques pour mutualiser des informations sur un sujet scientifique.} & & & & \cr \hline
+% C2 & \footnotesize{Utiliser des outils numériques pour mutualiser des informations sur un sujet scientifique.} & & & & \cr \hline
 %	C3 & \footnotesize{Planifier une tâche expérimentale, organiser son espace de travail, garder des traces des étapes suivies et des résultats obtenus.} & & & & \cr \hline
 % D & Pratiquer des langages \cr \hline
 %	D1 & \footnotesize{Lire et comprendre des documents scientifiques.} & & & & \cr \hline
@@ -172,63 +176,126 @@
 	\hline
 \end{tabular}
 \end{flushleft}
-
 % ============= DÉBUT DU DOCUMENT DE TRAVAIL ==================
+\section*{Objectifs}
+\begin{enumerate}
+	\item Établir le lien qualitatif entre hauteur et fréquence d'un son et son tracé sur oscillogramme. 
+	\item Établir le lien qualitatif entre intensité d'un son et le tracé sur un oscillogramme.
+\end{enumerate}
 
-\section{Protocole à suivre.}
-\paragraph*{Pour pouvoir compléter} le questionnaire~:
+\section*{Matériel et captures d'écran commentées.}
+\subsection*{Le matériel}
+Chaque groupe dispose :
 \begin{itemize}
-	\item Allez chercher une tablette,
-	\item Allumez-là et saisissez entièrement l'adresse qui suit ou vérifiez la présence d'un icône "Circuit Lab UTwente".
-	\item Construisez le circuit qui suit sans les appareils de mesure ~: circuit en dérivation avec un générateur de 4,75~V, un conducteur ohmique de résistance R~=~100~$\Omega$ et une lampe de 5~V~; 0.5~W.
+	\item de deux tablettes ou smartphones mis à disposition.
+	\item des logiciels \texttt{signal generator} et \texttt{Tuner} (visualisateur)
 \end{itemize}
 
-\paragraph*{Adresse du site.}
-\url{https://go-lab.gw.utwente.nl/production/electricalCircuitLab/build/circuitLab.html?preview}
+\subsection*{Signal Generator}
+Afin de vous familiariser avec le logiciel, voici une description visuelle de l'application \og~signal generator~\fg{}.
+\begin{figure}
+	\centering
+	\includegraphics{signal-generator-1kHz.jpg} ;
+\end{figure}
+
+\subsection*{Tuner}
+Afin de vous familiariser avec le logiciel, voici une description visuelle de l'application \og~Tuner~\fg{}.\begin{figure}
+	\centering
+	\includegraphics{Tuner.jpg}
+\end{figure}
+
+\section{Manipulations}
+\begin{multicols}{2}
+\paragraph{Description.}
+Placez le haut-parleur de la tablette A exécutant l'application \emph{signal generator\/} contre le microphone de la tablette B exécutant l'application \emph{tuner\/}. 
+Réglez le volume (avec les boutons) de la tablette 
+Suivez ensuite les consignes.
+\columnbreak
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.667\linewidth]{utwente circuit derivation.png}
+	\begin{tikzpicture}
+		\draw[rounded corners, fill=white!80!blue, line width=2pt] (5,0) rectangle ++(-3,2) node[below right] {{\tiny H.P.}} ;
+		\draw[rounded corners, fill=white!80!blue, line width=2pt] (2.5,2.15) node[above left] {{\tiny micro}} rectangle ++(-2,3) ;
+		\node (A) at (3.5,1) {tablette A} ;
+		\node (B) at (1.5,3.65) {tablette B} ;
+	\end{tikzpicture}
 \end{figure}
+\end{multicols}
 
-\section{Comment est répartie l'intensité du courant électrique ?}
-\paragraph*{Protocole.}
-Placez l'ampèremètre (A) aux positions suivantes et remplissez le tableau.
+\paragraph{1\iere{} manipulation.}
+Réglez la tablette A de la façon suivante~:
 \begin{itemize}
-	\item entre 0-0 et 0-1 : Ici l'ampèremètre mesure l'intensité du courant électrique $\rm I_1$,
-	\item entre 2-0 et 2-1 : Ici l'ampèremètre mesure l'intensité d courant électrique $\rm I_2$,
-	\item entre 4-0 et 4-1 : Ici l'ampèremètre mesure l'intensité d courant électrique $\rm I_3$.
+	\item son à moitié du maximum (boutons physiques)
+	\item Fréquence F~=~440,00~Hz
+	\item forme du signal sur $\boxed{\circ ~ \rm sin}$
+	\item intensité sonore réglée à -20~dB.
 \end{itemize}
-Faites varier la valeur de la résistance du conducteur ohmique et complétez le tableau dans le paragraphe ``mesures''.
-
-\paragraph{Mesures.}
-Changez la valeur de la résistance en cliquant dessus puis mesurez 
+Changez ensuite la fréquence dans l'application \emph{signal generator\/} et observez les changements dans l'application \emph{Tuner\/}. 
+Complétez le tableau qui suit avec vos mesures (au moins 5).
 \begin{table}
 	\centering
-	\rowcolors{1}{white!95!black}{white}
-	\renewcommand*{\arraystretch}{1.25}
-	\begin{tabular}{|l|m{0.15\linewidth}|m{0.125\linewidth}|m{0.125\linewidth}|m{0.125\linewidth}|m{0.125\linewidth}|}
+	\caption{Mesures de la première manipulation.}
+	\renewcommand*{\arraystretch}{1.45}
+	\rowcolors{1}{white!95!blue}{white}
+	\begin{tabular}{| m{0.11\linewidth} | m{0.18\linewidth} | m{0.64\linewidth} |}
 		\hline
-		 & R en $\Omega$ & $I_1$ & $I_2$ & $I_3$ & $I_2 + I_3$ \cr
+		Fréq. (Hz) & Hauteur ($\pm$ aigu) & Description du tracé (oscillogramme) \cr
 		\hline
-		100 &  &  &  &  &  \cr
+		& & \cr
 		\hline
-		1 000 &  &  &  &  &  \cr
+		& & \cr
 		\hline
-		10 000 &  &  &  &  &  \cr
+		& & \cr
+		\hline
+		& & \cr
+		\hline
+		& & \cr
 		\hline
 	\end{tabular}
 \end{table}
 
-\section{Conclusion.}
-Proposez une relation entre $I_1$, $I_2$ et $I_3$.
+\paragraph{2\ieme{} manipulation.} 
+Réglez la tablette A de la façon suivante~:
+\begin{itemize}
+	\item volume à la moitié du maximum (boutons physiques)
+	\item Fréquence F~=~440,00~Hz
+	\item forme du signal sur $\boxed{\circ ~ \rm sin}$
+	\item intensité sonore réglée à -20~dB.
+\end{itemize}
+Changez l'intensité sonore à l'aide du curseur. Notez ce qui se passe dans l'oscillogramme dans les pointillés qui suivent.
 
-\begin{bclogo}[couleur=pink!5, epOmbre=0.2cm, arrondi=0.1, logo=\bccoeur, nobreak=true]{}
-	\noindent . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ .
+\paragraph*{Notes.}
+. \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ .
+
+\paragraph{3\ieme{} manipulation.} 
+Réglez la tablette A de la façon suivante~:
+\begin{itemize}
+	\item volume à la moitié du maximum (boutons physiques)
+	\item Fréquence F~=~440,00~Hz
+	\item forme du signal sur $\boxed{\circ ~ \rm sin}$
+	\item intensité sonore réglée à -20~dB.
+\end{itemize}
+Modifiez la distance entre le micro de la tablette B et le haut-parleur de la tablette A. 
+Notez ce qui se passe dans l'oscillogramme dans les pointillés qui suivent. 
+
+\paragraph*{Notes.}
+. \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ .
+
+\section{Conclusion}
+En utilisant les résultats des trois manipulations, que pouvez-vous dire sur le lien entre hauteur d'un son, sa fréquence et son tracé sur un oscillogramme~? Même chose avec l'intensité sonore du son et son tracé sur l'oscillogramme.
+\begin{bclogo}[couleur=yellow!5, arrondi=0.1, logo=\bccrayon, nobreak=true]{}
+
+\ifthenelse{\boolean{isCorrection}}{% true
+{\large Plus un son est aigu plus sa fréquence et élevée et plus les vaguelettes sur un oscillogramme sont serrées, à \emph{contrario\/} si le son est grave, sa fréquence est basse et les vaguelettes élargies. \newline
+Pour l'intensité sonore, plus le son est fort, plus les maxima et minima de la courbe sont écartés.}
+}{%false
+\noindent . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ . \ \ .
+}
 \end{bclogo}
-\end{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % cadre pour le cours / à savoir par coeur.
 \begin{bclogo}[couleur=pink!5, epOmbre=0.2cm, arrondi=0.1, logo=\bccoeur, nobreak=true]{}
