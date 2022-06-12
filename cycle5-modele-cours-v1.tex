@@ -1,0 +1,171 @@
+\documentclass[12pt,a4paper,notitlepage]{article}
+% dans ce modèle article ne pas utiliser la mention "chapter", par contre on peut
+% utiliser la numérotation naturelle et les références croisées.
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage{eurosym} % pour pouvoir utiliser le symbole \euro{}
+\usepackage[left=17mm,right=17mm,top=17mm,bottom=17mm]{geometry}
+% définition du nombre de lignes à afficher en fin ou en début de page pour
+% éviter les veuves et orphelines.
+\usepackage[all, defaultlines=3]{nowidow}
+\usepackage{array}
+\usepackage[table]{xcolor} % pour couleur de blocs, permis avec \color{couleur}{texte}
+
+\usepackage{multirow}
+\usepackage{multicol}
+	\setlength{\columnsep}{0.6cm}
+	\setlength{\columnseprule}{1pt}
+	\def\columnseprulecolor{\color{black}}
+
+%\usepackage{wrapfig}
+% \begin{wrapfigure}[lineheight]{position = r R l L i I o O}{width}
+%  minuscule = float, majuscule = force emplacement
+% \end{wrapfigure}
+
+\usepackage{hyperref} %support des url via le tag \url
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=purple,
+	}
+	\urlstyle{same}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\usepackage{textcomp}
+
+\usepackage{graphicx}
+%\graphicspath{ {./Images/} } % indique le chemin relatif où sont situées les images
+% définition de la clé Graphic Inclusion pour paramétrer par défaut la taille des images incluses
+	\setkeys{Gin}{width=0.7071\linewidth}
+\usepackage{float}
+	\floatplacement{table}{H} %par défaut tables là où code est posé
+	\floatplacement{figure}{H} %par défaut images là où code est posé
+\usepackage{siunitx}
+	\sisetup{locale = FR}
+%%%% Packet circuitikz permet de dessiner des circuits électriques, peut nécessiter l'utiliation de siunitx
+%\usepackage[european]{circuitikz}
+%\usetikzlibrary{babel}
+%\usepackage{qrcode}
+%\usepackage{pgfplots} %permet de tracer directement des graphiques depuis latex
+
+\usepackage{ifthen}
+%%% Gestion de la dyslexie
+\newboolean{isDyslexique}
+	\setboolean{isDyslexique}{false}
+%%% Gestion de la correction
+\newboolean{isCorrection}
+	\setboolean{isCorrection}{false}
+
+% \usepackage{palatino} %\usepackage{sans}
+% \usepackage{lxfonts} %\usepackage{arev}
+\ifthenelse{\boolean{isDyslexique}}{% si vrai :
+	\usepackage{arev}
+	\renewcommand{\baselinestretch}{1.5}
+}{% si faux :
+	\usepackage{lmodern}
+	\renewcommand{\baselinestretch}{1.25}
+}
+\usepackage{lastpage}
+% test de modification des headers et footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\rightmark}
+\fancyhead[LO,RE]{\leftmark}
+\fancyfoot[LE,RO]{F.S.G.}
+\fancyfoot[C]{.::--- \ \thepage / \pageref*{LastPage} \ ---::.}
+\fancyfoot[RE,LO]{Titre}
+% fin du test de modification :)
+\usepackage{tikz}
+	\usetikzlibrary{babel,math}
+% inclusion du paquet bclogo pour boîtes avec logo de mise en exergue
+\usepackage[tikz]{bclogo}
+
+% ========= DÉFINITION D'UN INTERLIGNE DIFFÉRENT ===============
+\setlength{\parskip}{0.1cm} % définit l'espacement entre paragraphes
+\renewcommand{\thesection}{\Roman{section}}
+
+\author{F.G.}
+% éviter le titre peut-être ?
+\title{}
+
+\begin{document}
+%%% CARTOUCHE D'IDENTIFICATION %%%
+\begin{flushleft}
+\begin{tabular}{| m{0.15\linewidth} m{0.78\linewidth} |}
+	\hline
+	\multirow{4}{*}{\includegraphics[scale=0.3333333333]{logo-vide-cycle5.png}}	
+	& c5-1.pX.acY
+	\begin{LARGE}
+	Ici le titre qui va bien
+	\end{LARGE} \\ [0.5ex]
+	\cline{2-2}
+	 & NOM : . \ . \ . \ . \ . \ . \ . \ . \ . \ . \ . Prénom : . \ . \ . \ . \ . \ . \ . \ . \ . \ . \ . \\
+	 & \\
+	 & Classe : . \ . \ . \ . Durée : . \ . \ . \ . min. \\ [1ex]
+	\hline
+\end{tabular}
+
+%%% CARTOUCHE DE NOTATION %%%
+\ifthenelse{\boolean{isEvaluation}}{%true
+	\begin{flushleft}
+		\begin{tabular}{| m{0.15\linewidth} | m{0.8\linewidth} ||}
+			\hline
+			NOTE : & APPRÉCIATION : \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			\hline\hline
+		\end{tabular}
+	\end{flushleft}
+}{%false
+	\relax
+} % fin cartouche ntoation
+
+%%% CARTOUCHE D'ÉVALUATION DES COMPÉTENCES %%%
+\begin{tabular}{| m{0.05\linewidth} | m{0.725\linewidth} | m{0.015\linewidth} | m{0.015\linewidth} | m{0.015\linewidth} | m{0.015\linewidth} |}
+\hline
+\multirow{2}{*}{Réf.} & \multirow{2}{*}{Intitulé Compétences cycle 5} & \multicolumn{4}{c |}{État} \\
+\cline{3-6}
+	& & I & F & S & T \\
+\hline
+Ap 1 & Énoncer une problématique. & & & & \\ \hline
+Ap 2 & Rechercher et organiser l’information en lien avec la problématique étudiée. & & & & \\ \hline
+Ap 3 & Représenter la situation par un schéma. & & & & \\ \hline
+Ra 1 & Formuler des hypothèses. & & & & \\ \hline
+Ra 2 & Proposer une stratégie de résolution. & & & & \\ \hline
+Ra 3 & Planifier des tâches. & & & & \\ \hline
+Ra 4 & Évaluer des ordres de grandeur. & & & & \\ \hline
+Ra 5 & Choisir un modèle ou des lois pertinentes. & & & & \\ \hline
+Ra 6 & Choisir, élaborer, justifier un protocole. & & & & \\ \hline
+Ra 7 & Faire des prévisions à l'aide d'un modèle. & & & & \\ \hline
+Ra 8 & Procéder à des analogies. & & & & \\ \hline
+Ré 1 & Mettre en œuvre les étapes d’une démarche. & & & & \\ \hline
+Ré 2 & Utiliser un modèle. & & & & \\ \hline
+Ré 3 & Effectuer des procédures courantes (calculs, représentations, collectes de données, etc.). & & & & \\ \hline
+Ré 4 & Mettre en \oe{}uvre un protocole expérimental en respectant les règles de sécurité. & & & & \\ \hline
+Va 1 & Faire preuve d’esprit critique, procéder à des tests de vraisemblance. & & & & \\ \hline
+Va 2 & Identifier des sources d’erreur, estimer une incertitude, comparer à une valeur de référence. & & & & \\ \hline
+Va 3 & Confronter un modèle à des résultats expérimentaux. & & & & \\ \hline
+Va 4 & Proposer d’éventuelles améliorations de la démarche ou du modèle. & & & & \\ \hline
+Co 1 & présenter une démarche de manière argumentée, synthétique et cohérente. & & & & \\ \hline
+Co 2 & utiliser un vocabulaire adapté et choisir des modes de représentation appropriés & & & & \\ \hline
+Co 3 & échanger entre pairs. & & & & \\ \hline
+\end{tabular}
+
+\end{flushleft}
+
+\section*{Points du programme abordés.}
+
+bla bla bla
+
+%%%%% DÉBUT DU COURS %%%%%
+
+
+\end{document}

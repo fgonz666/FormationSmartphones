@@ -122,19 +122,22 @@
 % \includegraphics[scale=0.333]{cycle4-logo-mvts.png}
 % \includegraphics[scale=0.333]{cycle4-logo-transfo-matiere.png}
 
-\begin{flushleft}
-\begin{tabular}{| m{0.15\linewidth} | m{0.8\linewidth} ||}
-	\hline
-	NOTE : & APPRÉCIATION : \cr
-	$ ~~ $ & $ ~~ $ \cr
-	$ ~~ $ & $ ~~ $ \cr
-	$ ~~ $ & $ ~~ $ \cr
-	$ ~~ $ & $ ~~ $ \cr
-	$ ~~ $ & $ ~~ $ \cr
-	\hline\hline
-\end{tabular}
-\end{flushleft}
-
+\ifthenelse{\boolean{isEvaluation}}{%true
+	\begin{flushleft}
+		\begin{tabular}{| m{0.15\linewidth} | m{0.8\linewidth} ||}
+			\hline
+			NOTE : & APPRÉCIATION : \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			$ ~~ $ & $ ~~ $ \cr
+			\hline\hline
+		\end{tabular}
+	\end{flushleft}
+}{%false
+	\relax
+} % fin cartouche ntoation
 % $ ~~ $
 
 \begin{flushleft}
